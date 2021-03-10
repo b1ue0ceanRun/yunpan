@@ -5,4 +5,5 @@
 记得更改数据库代码  
 Java版本 15
 数据库MySQL8
+wangpan.sql为数据库（带有测试数据）
 
