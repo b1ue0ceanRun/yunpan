@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.run.mapper.FileMapper">
+
+
+
+    <!--根据文件id删除文件记录-->
+    <delete id="deleteFile">
+        delete from files where id = #{id}
+    </delete>
+
+
+    <!--保存文件信息-->
+    <insert id="saveFile" parameterType="com.run.pojo.File" useGeneratedKeys="true" keyProperty="id">
+        insert into files(id,username, FileName, path, size, type, uploadTime, newFileName ,extension)
+        values (#{id},#{username},#{FileName},#{path},#{size},#{type},#{uploadTime},#{newFileName},#{extension})
+
+ </insert>
+
+    <!--根据登录用户名获取用户的文件列表-->
+    <select id="findByUserName"  resultType="com.run.pojo.File">
+        select * from files where username = #{username}
+    </select>
+
+
+    <!--根据文件id获取文件信息-->
+    <select id="findByFileId" resultType="com.run.pojo.File">
+            select * from files where id = #{id}
+    </select>
+
+    <!--    ==========================================   =====================================  -->
+
+<!--   对未审核的图片进行审核   -->
+    <insert id="saveFileToCheck" parameterType="com.run.pojo.File" useGeneratedKeys="true" keyProperty="id">
+        insert into files_check(id,username, FileName, path, size, type, uploadTime, newFileName ,extension)
+        values (#{id},#{username},#{FileName},#{path},#{size},#{type},#{uploadTime},#{newFileName},#{extension})
+    </insert>
+
+    <delete id="deleteCheckedFile">
+        delete from files_check where id = #{id}
+    </delete>
+
+    <select id="showUncheckedFile" resultType="com.run.pojo.File">
+        select * from files_check
+    </select>
+    <select id="findUncheckedFileById" resultType="com.run.pojo.File">
+        select * from files_check where id = #{id}
+    </select>
+    <select id="findUserSpace" resultType="java.lang.Integer">
+            SELECT SUM(size)  from files where username = #{username}
+    </select>
+
+
+</mapper>

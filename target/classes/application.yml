@@ -1,0 +1,55 @@
+server:
+  port: 8081
+
+spring:
+  thymeleaf:
+    cache: false
+  application:
+    name: springfox-swagger
+
+
+
+  datasource:
+    name: my_yunpan
+    url: jdbc:mysql://localhost:3306/sql_yunpan?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false
+    username: root
+    password: 20010615haorun
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  servlet:
+    multipart:
+      max-file-size: 10MB
+
+
+
+
+
+
+mybatis:
+  type-aliases-package: com.run.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+# ===== 自定义swagger配置 ===== #
+springfox:
+  documentation:
+    swagger-ui:
+      enabled: true
+
+pagehelper:
+  offset-as-page-num: true
+  reasonable: true
+  page-size-zero: true
+  support-methods-arguments: true
+  params: count=countsql
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.run.mapper.UserMapper">
+    <insert id="addUser" parameterType="com.run.pojo.User">
+        insert into users (username,password,phone,email ) values (#{username},#{password},#{phone},#{email})
+    </insert>
+
+    <update id="updateUser" parameterType="com.run.pojo.User">
+        update users set password = #{password} , phone = #{phone} ,email = #{email} where username = #{username}
+    </update>
+
+    <delete id="deleteUser" parameterType="String">
+        delete * from users where username = #{username}
+    </delete>
+
+    <select id="queryUserList" resultType="com.run.pojo.User">
+        select * from users
+    </select>
+
+    <select id="queryUserByUsername" resultType="com.run.pojo.User" parameterType="String">
+        select * from users where username = #{username}
+    </select>
+</mapper>
